@@ -1,0 +1,17 @@
+export const turmasAlunos = [
+  { aproveitamento: 30, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 40, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 10, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 0, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 30, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 70, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 90, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 0, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 0, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 20, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 3, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 50, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 30, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 60, nomeAluno: "Alberto Dos Santos Kitumba" },
+  { aproveitamento: 59, nomeAluno: "Alberto Dos Santos Kitumba" },
+];

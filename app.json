@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Projecto Final",
+    "slug": "projecto-final",
+    "description": "Aplicativo Móvel para o monitoramento do desempenho do aluno",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1B2C34"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1B2C34"
+      },
+      "package": "com.ikitumba.projectofinal"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "57f705a7-4f4a-4999-81fb-2615924d2631"
+      }
+    }
+  }
+}
