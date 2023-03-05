@@ -1,6 +1,8 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useContext } from "react";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { colors } from "../theme/colors";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function NotasDisciplina({
   disciplina,
@@ -10,6 +12,7 @@ export default function NotasDisciplina({
   handleNavigateToAddNotas,
   diminuitivo,
 }) {
+  const { usuario } = useContext(AuthContext);
   const disciplinaFormatted =
     disciplina.length <= 17 ? disciplina : diminuitivo;
   const media = Math.round(Number((nota1 + nota2 + nota3) / 3));
@@ -21,6 +24,7 @@ export default function NotasDisciplina({
       : colors.green;
   return (
     <TouchableOpacity
+      disabled={usuario.tipo_usuario === "ADMIN"}
       onPress={handleNavigateToAddNotas}
       style={[
         styles.notaWrapper,

@@ -98,7 +98,7 @@ export default function LoginAluno() {
           style={styles.gradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          colors={["#1EAFE4", "#0F5872"]}
+          colors={["#5FBDFF", "#5678F8"]}
         >
           <Text style={styles.buttonText}>
             {fetching ? "ENTRADO..." : "ENTRAR"}
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     height: 46,
     borderWidth: 1,
     borderColor: colors.grey,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     marginBottom: 12,
     paddingHorizontal: 8,
     borderRadius: 4,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: "#F5FAFF",
+    color: colors.white,
     fontWeight: "bold",
     fontSize: 16,
   },

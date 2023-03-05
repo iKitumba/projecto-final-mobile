@@ -5,22 +5,23 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
+  Alert,
   FlatList,
 } from "react-native";
 import Constants from "expo-constants";
 import Title from "../../components/Title";
 import Aluno from "../../components/Aluno";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API } from "../../services/api";
 
 import Loading from "../../components/Loading";
 import { colors } from "../../theme/colors";
 import { useToken } from "../../utils/useToken";
+import { formatPeriodo } from "../../utils/formatPeriodo";
 
 export default function Turma() {
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [alunos, setAlunos] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();
@@ -39,24 +40,32 @@ export default function Turma() {
   //   navigation.navigate("AlunoPerfil");
   // }
 
-  useEffect(() => {
-    async function loadAllAlunos() {
-      const token = await useToken();
+  async function loadAllAlunos() {
+    const token = await useToken();
 
-      try {
-        const { data } = await API.get(`turmas/${turma.id}/alunos`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setAlunos(data.alunos);
-      } catch (error) {
-        return Alert.alert("Erro", error.response?.data.message);
-      } finally {
-        setLoading(false);
-      }
+    try {
+      const { data } = await API.get(`turmas/${turma.id}/alunos`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setAlunos(data.alunos);
+    } catch (error) {
+      return Alert.alert("Erro", error.response?.data.message);
+    } finally {
+      setLoading(false);
     }
+  }
 
+  async function refreshList() {
+    setRefreshing(true);
+
+    await loadAllAlunos();
+
+    setRefreshing(false);
+  }
+
+  useEffect(() => {
     loadAllAlunos();
   }, [turma]);
 
@@ -70,7 +79,9 @@ export default function Turma() {
               {formatedNomeCurso}
             </Text>
           </TouchableOpacity>
-          <Text style={styles.topPeriodo}>{turma.turno}</Text>
+          <Text style={styles.topPeriodo}>
+            {formatPeriodo({ periodo: turma.turno })}
+          </Text>
         </View>
         <View style={styles.bottomRow}>
           <Title
@@ -85,6 +96,8 @@ export default function Turma() {
       ) : (
         <FlatList
           data={alunos}
+          onRefresh={refreshList}
+          refreshing={refreshing}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item: aluno, index }) => (
             <Aluno

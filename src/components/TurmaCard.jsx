@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { colors } from "../theme/colors";
+import { formatPeriodo } from "../utils/formatPeriodo";
 
 export default function TurmaCard({
   classe,
@@ -17,7 +18,7 @@ export default function TurmaCard({
         <Text style={styles.curso}>{curso}</Text>
       </TouchableOpacity>
       <View style={styles.turmaInfo}>
-        <Text style={styles.periodo}>{periodo}</Text>
+        <Text style={styles.periodo}>{formatPeriodo({ periodo })}</Text>
         {disciplina && (
           <Text style={styles.disciplina}>
             {disciplina.titulo.length > 10
@@ -25,7 +26,9 @@ export default function TurmaCard({
               : disciplina.titulo}
           </Text>
         )}
-        <Text style={styles.num_alunos}>{num_alunos} alunos</Text>
+        <Text style={styles.num_alunos}>
+          <Text style={{ fontWeight: "bold" }}>{num_alunos}</Text> alunos
+        </Text>
       </View>
     </View>
   );
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
   turmaContainer: {
     width: "100%",
     height: 104,
-    backgroundColor: "#F6F7F8",
+    backgroundColor: colors.white,
     borderRadius: 8,
     borderWidth: 1,
     flexDirection: "row",
@@ -59,11 +62,11 @@ const styles = StyleSheet.create({
   classe: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#F5FAFF",
+    color: colors.text,
   },
   curso: {
     textTransform: "uppercase",
-    color: "#F5FAFF",
+    color: colors.text,
     fontSize: 14,
   },
   turmaInfo: {
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
   },
   periodo: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "normal",
     color: colors.text,
     textAlign: "right",
   },
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
   },
   num_alunos: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "normal",
     color: colors.text,
     textAlign: "right",
   },

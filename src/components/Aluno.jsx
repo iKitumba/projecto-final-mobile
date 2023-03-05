@@ -84,8 +84,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     borderRadius: 8,
+    borderColor: colors.border,
     paddingHorizontal: 7,
   },
   profilePic: {

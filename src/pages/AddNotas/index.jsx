@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 12,
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   },
 
   mediaText: {
-    color: "#F5FAFF",
+    color: colors.white,
     fontSize: 16,
   },
 

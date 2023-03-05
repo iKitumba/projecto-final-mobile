@@ -13,6 +13,7 @@ import { useToken } from "../../utils/useToken";
 
 export default function AllProfessores() {
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
   const [professsores, setProfessores] = useState([]);
 
@@ -20,25 +21,33 @@ export default function AllProfessores() {
     navigation.navigate("Turma");
   }
 
-  useEffect(() => {
-    async function loadAllProfessores() {
-      const token = await useToken();
+  async function loadAllProfessores() {
+    const token = await useToken();
 
-      try {
-        const { data } = await API.get("professores", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    try {
+      const { data } = await API.get("professores", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        setProfessores(data.professores);
-      } catch (error) {
-        Alert.alert("Erro", error.response?.data.message);
-      } finally {
-        setLoading(false);
-      }
+      setProfessores(data.professores);
+    } catch (error) {
+      Alert.alert("Erro", error.response?.data.message);
+    } finally {
+      setLoading(false);
     }
+  }
 
+  async function refreshList() {
+    setRefreshing(true);
+
+    await loadAllProfessores();
+
+    setRefreshing(false);
+  }
+
+  useEffect(() => {
     loadAllProfessores();
   }, []);
 
@@ -51,15 +60,14 @@ export default function AllProfessores() {
               Telefonar
             </Text>
           </View> */}
-        <Title
-          text="Todos os Professores"
-          stylesContainer={{ marginTop: 12 }}
-        />
+        <Title text="Professores" stylesContainer={{ marginTop: 12 }} />
         {loading ? (
           <Loading />
         ) : (
           <FlatList
             data={professsores}
+            onRefresh={refreshList}
+            refreshing={refreshing}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => {
               return (

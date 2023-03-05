@@ -6,25 +6,25 @@ import { colors } from "../theme/colors";
 
 export default function ProfessorDisciplinaTelefone({ professor, disciplina }) {
   const nomeProfessorFormatted =
-    professor.nome_completo.length <= 9
+    professor.nome_completo.length <= 35
       ? professor.nome_completo
-      : `${professor.nome_completo.slice(0, 9)}...`;
+      : `${professor.nome_completo.slice(0, 32)}...`;
 
   const disciplinaFormatted =
-    disciplina.titulo.length > 9 ? disciplina.diminuitivo : disciplina.titulo;
+    disciplina.titulo.length > 40 ? disciplina.diminuitivo : disciplina.titulo;
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.td}>
-        <Text style={styles.tdText} numberOfLines={1}>
+        <Text style={styles.profName} numberOfLines={1}>
           {nomeProfessorFormatted}
         </Text>
+        <Text style={styles.profDisciplina} numberOfLines={1}>
+          {disciplinaFormatted}
+        </Text>
       </TouchableOpacity>
-      <Text style={styles.tdText} numberOfLines={1}>
-        {disciplinaFormatted}
-      </Text>
       <TouchableOpacity
-        style={styles.td}
+        style={styles.callIconContainer}
         onPress={() => handleCall(professor.telefone)}
       >
         <Ionicons
@@ -44,20 +44,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 8,
-    backgroundColor: "#F5FAFF",
-    paddingVertical: 8,
-    borderRadius: 4,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#61768d7f",
+    backgroundColor: colors.white,
+    paddingHorizontal: 8,
+    borderRadius: 6,
+    paddingVertical: 7,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   td: {
     flex: 1,
-    paddingLeft: 12,
     textAlign: "center",
   },
-  tdText: {
+  profName: {
     fontSize: 16,
     color: colors.text,
+  },
+  profDisciplina: {
+    fontSize: 10,
+    textTransform: "uppercase",
+    color: colors.text,
+  },
+  callIconContainer: {
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

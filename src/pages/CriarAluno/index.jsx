@@ -14,6 +14,8 @@ import {
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Constants from "expo-constants";
 
+import RNDateTimePicker from "@react-native-community/datetimepicker";
+
 import * as ImagePicker from "expo-image-picker";
 
 import SelectDropdown from "react-native-select-dropdown";
@@ -36,8 +38,7 @@ export default function CriarAluno() {
   const [telefone_1, setTelefone_1] = useState("");
   const [telefone_2, setTelefone_2] = useState("");
   const [endereco, setEndereco] = useState("");
-  const [nascimento, setNascimento] = useState("");
-  const [hasError, setHasError] = useState(false);
+  const [nascimento, setNascimento] = useState(new Date());
   const [turmas, setTurmas] = useState([]);
   const [turmaId, setTurmaId] = useState("");
   const [fetching, setFetching] = useState(false);
@@ -54,6 +55,30 @@ export default function CriarAluno() {
     !nascimento ||
     !turmaId ||
     fetching;
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState("Clique para escolher");
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || nascimento;
+    setShow(Platform.OS === "ios");
+    setNascimento(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate =
+      tempDate.getDate() +
+      "/" +
+      (tempDate.getMonth() + 1) +
+      "/" +
+      tempDate.getFullYear();
+
+    setText(fDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
 
   function handleBack() {
     navigation.goBack();
@@ -95,11 +120,6 @@ export default function CriarAluno() {
   ) => {
     const data = new FormData();
 
-    if (hasError) {
-      Alert.alert("Erro", "Data inválida");
-      return null;
-    }
-
     data.append("foto_perfil", {
       name: photo.uri.substring(photo.uri.lastIndexOf("/") + 1),
       type: `${photo.type}/${photo.uri.substring(
@@ -121,35 +141,6 @@ export default function CriarAluno() {
     return data;
   };
 
-  const formatNascimento = (dataNascimento = "") => {
-    const [dia, mes, ano] = dataNascimento.split("-");
-
-    if (!Number(dia) || Number(dia) < 1 || Number(dia) > 31) {
-      Alert.alert("Erro", "Dia inválido");
-      setHasError(true);
-      return new Error("Data inválida");
-    }
-
-    if (!Number(mes) || Number(mes) < 1 || Number(mes) > 12) {
-      Alert.alert("Erro", "Mês inválido");
-      setHasError(true);
-      return new Error("Data inválida");
-    }
-
-    if (
-      !Number(ano) ||
-      Number(ano) < 1975 ||
-      Number(ano) > new Date().getFullYear()
-    ) {
-      Alert.alert("Erro", "Ano inválido");
-      setHasError(true);
-      return new Error("Data inválida");
-    }
-
-    setHasError(false);
-    return new Date(`${ano}-${mes}-${dia}`).toISOString();
-  };
-
   async function handleUpload() {
     setFetching(true);
     const token = await useToken();
@@ -159,7 +150,7 @@ export default function CriarAluno() {
       nome_pai,
       nome_mae,
       bi,
-      nascimento: formatNascimento(nascimento),
+      nascimento: nascimento.toISOString(),
       endereco,
       telefone_1,
       telefone_2,
@@ -178,6 +169,7 @@ export default function CriarAluno() {
 
       navigation.navigate("TurmaRoutes");
     } catch (error) {
+      console.log(error);
       return Alert.alert("Erro", error.response?.data.message);
     } finally {
       setFetching(false);
@@ -257,7 +249,7 @@ export default function CriarAluno() {
               style={[
                 styles.genero,
                 {
-                  backgroundColor: isFemale ? colors.completary : "#F5FAFF",
+                  backgroundColor: isFemale ? colors.completary : colors.white,
                   marginRight: 8,
                 },
               ]}
@@ -265,7 +257,7 @@ export default function CriarAluno() {
               <Text
                 style={[
                   styles.generoText,
-                  { color: isFemale ? "#F5FAFF" : "#73869B" },
+                  { color: isFemale ? colors.white : "#73869B" },
                 ]}
               >
                 F
@@ -275,13 +267,15 @@ export default function CriarAluno() {
               onPress={handleGenero}
               style={[
                 styles.genero,
-                { backgroundColor: !isFemale ? colors.completary : "#F5FAFF" },
+                {
+                  backgroundColor: !isFemale ? colors.completary : colors.white,
+                },
               ]}
             >
               <Text
                 style={[
                   styles.generoText,
-                  { color: !isFemale ? "#F5FAFF" : "#73869B" },
+                  { color: !isFemale ? colors.white : "#73869B" },
                 ]}
               >
                 M
@@ -316,14 +310,29 @@ export default function CriarAluno() {
 
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Nasceu aos</Text>
-            <TextInput
-              placeholder="dia-mês-ano"
-              placeholderTextColor="rgba(115, 134, 155, .4)"
-              style={styles.input}
-              value={nascimento}
-              keyboardType="numeric"
-              onChangeText={setNascimento}
-            />
+
+            <TouchableOpacity
+              style={[
+                styles.input,
+                { alignItems: "center", justifyContent: "center" },
+              ]}
+              onPress={() => showMode("date")}
+            >
+              <Text style={{ color: colors.text, fontSize: 16 }}>{text}</Text>
+            </TouchableOpacity>
+            <View>
+              {show && (
+                <RNDateTimePicker
+                  testID="dateTimePicker"
+                  maximumDate={new Date()}
+                  value={nascimento}
+                  mode={mode}
+                  is24Hour={true}
+                  display="default"
+                  onChange={onChange}
+                />
+              )}
+            </View>
           </View>
 
           <View style={styles.inputContainer}>
@@ -471,7 +480,7 @@ const styles = StyleSheet.create({
   input: {
     height: 46,
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,
@@ -486,7 +495,7 @@ const styles = StyleSheet.create({
   genero: {
     width: 46,
     height: 46,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: "#BAC5D1",
     alignSelf: "center",
@@ -511,7 +520,7 @@ const styles = StyleSheet.create({
   previewContainer: {
     width: 154,
     height: 154,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
@@ -530,7 +539,7 @@ const styles = StyleSheet.create({
   dropDown: {
     width: "100%",
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,

@@ -33,13 +33,11 @@ export default function AlunoRoutes() {
         component={AlunoEncarregadoProfileRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="md-person" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="md-person-outline"
+                color={focused ? colors.accent : colors.text}
+                name="person-outline"
               />
             );
           },
@@ -50,13 +48,11 @@ export default function AlunoRoutes() {
         component={Comunicados}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="notifications" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="notifications-outline"
+                color={focused ? colors.accent : colors.text}
+                name="megaphone-outline"
               />
             );
           },
@@ -67,13 +63,11 @@ export default function AlunoRoutes() {
         component={AlunoSettingsRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="md-settings" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="md-settings-outline"
+                color={focused ? colors.accent : colors.text}
+                name="options"
               />
             );
           },

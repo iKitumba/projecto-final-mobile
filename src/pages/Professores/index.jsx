@@ -16,13 +16,14 @@ import { useToken } from "../../utils/useToken";
 import { API } from "../../services/api";
 import Loading from "../../components/Loading";
 import { colors } from "../../theme/colors";
+import { formatPeriodo } from "../../utils/formatPeriodo";
 
 export default function Professores() {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
   const route = useRoute();
   const [professoresDisciplinas, setProfessoresDisciplinas] = useState([]);
-  const { turma_id, curso, turno } = route.params;
+  const { turma_id, curso, turno, turma } = route.params;
 
   function handleBack() {
     navigation.goBack();
@@ -58,20 +59,20 @@ export default function Professores() {
         <View style={styles.topRow}>
           <TouchableOpacity style={styles.goBack} onPress={handleBack}>
             <Ionicons name="arrow-back" size={24} color={colors.text} />
-            <Text style={styles.topCursoName}>{curso.diminuitivo}</Text>
+            <Text style={styles.topCursoName}>
+              {curso.diminuitivo} {turma.classe}
+              {turma.letra}
+            </Text>
           </TouchableOpacity>
-          <Text style={styles.topPeriodo}>{turno}</Text>
+          <Text style={styles.topPeriodo}>
+            {formatPeriodo({ periodo: turno })}
+          </Text>
         </View>
         <View style={styles.bottomRow}>
           <Title
-            text="10ª A"
+            text="Professores"
             stylesContainer={{ marginTop: 24, marginBottom: 24 }}
           />
-        </View>
-        <View style={styles.profHeader}>
-          <Text style={styles.thead}>Professor</Text>
-          <Text style={styles.thead}>Disciplina</Text>
-          <Text style={styles.thead}>Telefonar</Text>
         </View>
       </View>
 

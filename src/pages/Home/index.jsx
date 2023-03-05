@@ -14,27 +14,39 @@ import { colors } from "../../theme/colors";
 export default function Home() {
   const { usuario } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
   const [turmas, setTurmas] = useState([]);
   const { tipo_usuario } = usuario;
 
-  function navigateToTurma({ turma }) {
-    navigation.navigate("Turma", { turma });
-  }
-
-  useEffect(() => {
-    async function loadTurmas() {
-      const token = await useToken();
+  async function loadTurmas() {
+    const token = await useToken();
+    try {
       const { data } = await API.get("professores/turmas", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setTurmas(data.turmas);
+    } catch (error) {
+    } finally {
       setLoading(false);
     }
+  }
 
+  function navigateToTurma({ turma }) {
+    navigation.navigate("Turma", { turma });
+  }
+
+  async function refreshList() {
+    setRefreshing(true);
+
+    await loadTurmas();
+
+    setRefreshing(false);
+  }
+
+  useEffect(() => {
     loadTurmas();
   }, []);
 
@@ -51,7 +63,8 @@ export default function Home() {
             <Title text="Turmas" stylesContainer={{ marginTop: 12 }} />
           }
           data={turmas}
-          // contentContainerStyle={{ flex: 1 }}
+          onRefresh={refreshList}
+          refreshing={refreshing}
           style={styles.turmasList}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => item.id + index}

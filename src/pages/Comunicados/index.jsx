@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Image,
-  FlatList,
-} from "react-native";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import Constants from "expo-constants";
 import { format } from "date-fns";
 import pt from "date-fns/locale/pt";
@@ -22,16 +15,28 @@ import { colors } from "../../theme/colors";
 
 export default function Comunicados() {
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [comunicados, setComunicados] = useState([]);
 
-  useEffect(() => {
-    async function loadComunicados() {
+  async function loadComunicados() {
+    try {
       const { data, headers } = await API.get("comunicados");
-
       setComunicados(data.comunicados);
+    } catch (error) {
+    } finally {
       setLoading(false);
     }
+  }
 
+  async function refreshList() {
+    setRefreshing(true);
+
+    await loadComunicados();
+
+    setRefreshing(false);
+  }
+
+  useEffect(() => {
     loadComunicados();
   }, []);
 
@@ -50,6 +55,8 @@ export default function Comunicados() {
               stylesContainer={{ marginTop: 24, paddingHorizontal: 24 }}
             />
           }
+          onRefresh={refreshList}
+          refreshing={refreshing}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
           style={styles.comunicadosContainer}

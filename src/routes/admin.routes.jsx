@@ -30,10 +30,12 @@ export default function AdminRoutes({}) {
         component={TurmaRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="bookmark" />
-            ) : (
-              <Ionicons size={28} color={colors.text} name="bookmark-outline" />
+            return (
+              <Ionicons
+                size={28}
+                color={focused ? colors.accent : colors.text}
+                name="layers-outline"
+              />
             );
           },
         }}
@@ -44,13 +46,11 @@ export default function AdminRoutes({}) {
         component={AllProfessores}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="md-people" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="md-people-outline"
+                color={focused ? colors.accent : colors.text}
+                name="people-outline"
               />
             );
           },
@@ -78,13 +78,11 @@ export default function AdminRoutes({}) {
         component={Comunicados}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="notifications" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="notifications-outline"
+                color={focused ? colors.accent : colors.text}
+                name="megaphone-outline"
               />
             );
           },
@@ -95,13 +93,11 @@ export default function AdminRoutes({}) {
         component={UsuarioSettingsRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="md-settings" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="md-settings-outline"
+                color={focused ? colors.accent : colors.text}
+                name="options"
               />
             );
           },

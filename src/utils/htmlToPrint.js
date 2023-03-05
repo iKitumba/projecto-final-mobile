@@ -1,3 +1,7 @@
+import { format } from "date-fns";
+import pt from "date-fns/locale/pt";
+import { formatPeriodo } from "./formatPeriodo";
+
 export const useHtmlToPrint = function ({ aluno, notas }) {
   let notasTableRows = "";
   let totalDeMedias = 0;
@@ -18,6 +22,9 @@ export const useHtmlToPrint = function ({ aluno, notas }) {
     totalDeMedias += nota.media;
   }
   const mediaFinal = Math.round(totalDeMedias / notas.length);
+  const date = format(new Date(), "'Aos' d ' De ' MMMM yyyy", {
+    locale: pt,
+  });
 
   return `<!DOCTYPE html>
   <html lang="pt">
@@ -97,10 +104,12 @@ export const useHtmlToPrint = function ({ aluno, notas }) {
             <strong>${aluno.turma.classe}</strong>
   
             <span>Turno:</span>
-            <strong>${aluno.turma.turno}</strong>
+            <strong>${formatPeriodo({ periodo: aluno.turma.turno })}</strong>
           </div>
         </div>
-        <strong style="margin: 10px auto; font-size: 10px; align-self: center">${notas[0].trimestre} TRIMESTRE</strong> 
+        <strong style="margin: 10px auto; font-size: 10px; align-self: center">${
+          notas[0].trimestre
+        } TRIMESTRE</strong> 
         <table style="border: 1px solid black; border-collapse: collapse">
           <thead
             style="
@@ -130,7 +139,7 @@ export const useHtmlToPrint = function ({ aluno, notas }) {
                     justify-content: space-between;
                   "
                 >
-                  <span style="font-size: 8px">Aos 13 De Fevereiro De 2023</span>
+                  <span style="font-size: 8px">${date}</span>
                   <span style="font-size: 10px">
                     <span>Média Final:</span>
                     <strong>${mediaFinal}</strong>

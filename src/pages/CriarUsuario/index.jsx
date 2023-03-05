@@ -211,7 +211,7 @@ export default function CriarUsuario() {
               style={[
                 styles.genero,
                 {
-                  backgroundColor: isFemale ? colors.completary : "#F5FAFF",
+                  backgroundColor: isFemale ? colors.completary : colors.white,
                   marginRight: 8,
                 },
               ]}
@@ -219,7 +219,7 @@ export default function CriarUsuario() {
               <Text
                 style={[
                   styles.generoText,
-                  { color: isFemale ? "#F5FAFF" : "#73869B" },
+                  { color: isFemale ? colors.white : "#73869B" },
                 ]}
               >
                 F
@@ -229,13 +229,15 @@ export default function CriarUsuario() {
               onPress={handleGenero}
               style={[
                 styles.genero,
-                { backgroundColor: !isFemale ? colors.completary : "#F5FAFF" },
+                {
+                  backgroundColor: !isFemale ? colors.completary : colors.white,
+                },
               ]}
             >
               <Text
                 style={[
                   styles.generoText,
-                  { color: !isFemale ? "#F5FAFF" : "#73869B" },
+                  { color: !isFemale ? colors.white : "#73869B" },
                 ]}
               >
                 M
@@ -413,7 +415,7 @@ const styles = StyleSheet.create({
   input: {
     height: 46,
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,
@@ -429,7 +431,7 @@ const styles = StyleSheet.create({
   genero: {
     width: 46,
     height: 46,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: "#BAC5D1",
     alignSelf: "center",
@@ -454,7 +456,7 @@ const styles = StyleSheet.create({
   previewContainer: {
     width: 154,
     height: 154,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
@@ -473,7 +475,7 @@ const styles = StyleSheet.create({
   dropDown: {
     width: "100%",
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,

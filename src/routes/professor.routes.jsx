@@ -28,13 +28,11 @@ export default function ProfessorRoutes() {
         component={TurmaRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="md-person" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="md-person-outline"
+                color={focused ? colors.accent : colors.text}
+                name="layers-outline"
               />
             );
           },
@@ -45,13 +43,11 @@ export default function ProfessorRoutes() {
         component={Comunicados}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="notifications" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="notifications-outline"
+                color={focused ? colors.accent : colors.text}
+                name="megaphone-outline"
               />
             );
           },
@@ -62,13 +58,11 @@ export default function ProfessorRoutes() {
         component={UsuarioSenttingsRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
-            return focused ? (
-              <Ionicons size={28} color={colors.accent} name="md-settings" />
-            ) : (
+            return (
               <Ionicons
                 size={28}
-                color={colors.text}
-                name="md-settings-outline"
+                color={focused ? colors.accent : colors.text}
+                name="options"
               />
             );
           },

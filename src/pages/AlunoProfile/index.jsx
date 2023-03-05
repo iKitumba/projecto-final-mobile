@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   ScrollView,
   View,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from "react-native";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,12 +16,14 @@ import Title from "../../components/Title";
 import NotasDisciplina from "../../components/NotasDisciplina";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { AuthContext } from "../../contexts/AuthContext";
 
 import { useToken } from "../../utils/useToken";
 import { API } from "../../services/api";
 import Loading from "../../components/Loading";
 import { colors } from "../../theme/colors";
 import { handleCall } from "../../utils/handleCall";
+import { formatPeriodo } from "../../utils/formatPeriodo";
 
 export default function AlunoPerfil() {
   const [loading, setLoading] = useState(true);
@@ -29,9 +32,10 @@ export default function AlunoPerfil() {
   const navigation = useNavigation();
   const route = useRoute();
   const { aluno_id, aproveitamento } = route.params;
+  const { usuario } = useContext(AuthContext);
 
-  function handleNavigateToProfessores({ turma_id, curso, turno }) {
-    navigation.navigate("Professores", { turma_id, curso, turno });
+  function handleNavigateToProfessores({ turma_id, curso, turno, turma }) {
+    navigation.navigate("Professores", { turma_id, curso, turno, turma });
   }
 
   function handleNavigateToImprimir({ notas, aluno }) {
@@ -63,6 +67,44 @@ export default function AlunoPerfil() {
       trimestre,
       media,
     });
+  }
+
+  function handleDeleteAluno() {
+    async function deleteAluno() {
+      const token = await useToken();
+
+      try {
+        setLoading(true);
+        const { data } = await API.delete(`alunos/${aluno_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        Alert.alert("Sucesso", data.message);
+        navigation.navigate("Home");
+      } catch (error) {
+        return Alert.alert("Erro", error.response?.data.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    Alert.alert(
+      "Eliminar",
+      `Tem certeza que deseja eliminar o(a) aluno(a) ${aluno.nome_completo}?`,
+      [
+        {
+          text: "Sim",
+          onPress: deleteAluno,
+          style: "destructive",
+        },
+        {
+          text: "Não",
+          style: "cancel",
+        },
+      ]
+    );
   }
 
   useEffect(() => {
@@ -119,6 +161,20 @@ export default function AlunoPerfil() {
             resizeMode="contain"
             style={styles.profileImg}
           />
+          {usuario.tipo_usuario === "ADMIN" ||
+          usuario.tipo_usuario === "PROFESSOR_ADMIN" ? (
+            <TouchableOpacity
+              onPress={handleDeleteAluno}
+              style={{ position: "absolute", top: 48, right: 24 }}
+            >
+              <Ionicons
+                name="trash-bin-outline"
+                // style={{ position: "relative", top: 48, left: 24 }}
+                size={24}
+                color={colors.primary}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
       </LinearGradient>
       <ScrollView style={styles.container}>
@@ -128,7 +184,7 @@ export default function AlunoPerfil() {
         <Text style={styles.descricaoAluno} numberOfLines={3}>
           Frequenta a {aluno?.turma.classe} classe, turma {aluno?.turma.letra}{" "}
           no curso de {aluno?.turma.curso.titulo} no período da{" "}
-          {aluno?.turma.turno}
+          {formatPeriodo({ periodo: aluno?.turma.turno })}
         </Text>
         <View style={styles.actions}>
           <TouchableOpacity
@@ -138,6 +194,7 @@ export default function AlunoPerfil() {
                 turma_id: aluno?.turma_id,
                 curso: aluno?.turma.curso,
                 turno: aluno?.turma.turno,
+                turma: aluno?.turma,
               })
             }
           >
@@ -314,7 +371,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   boletimWrapper: {
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 12,

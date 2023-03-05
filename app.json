@@ -10,31 +10,24 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1B2C34"
+      "backgroundColor": "#142A3B"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#1B2C34"
+        "backgroundColor": "#142A3B"
       },
       "package": "com.ikitumba.projectofinal"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "57f705a7-4f4a-4999-81fb-2615924d2631"
-      }
     }
   }
 }

@@ -22,6 +22,7 @@ import { useToken } from "../../utils/useToken";
 import { API } from "../../services/api";
 import Loading from "../../components/Loading";
 import { colors } from "../../theme/colors";
+import { formatPeriodo } from "../../utils/formatPeriodo";
 
 export default function Aluno() {
   const [loading, setLoading] = useState(true);
@@ -31,8 +32,8 @@ export default function Aluno() {
   const [notas, setNotas] = useState(null);
   const [aproveitamento, setAproveitamento] = useState(0);
 
-  function handleNavigateToProfessores({ turma_id, curso, turno }) {
-    navigation.navigate("Professores", { turma_id, curso, turno });
+  function handleNavigateToProfessores({ turma_id, curso, turno, turma }) {
+    navigation.navigate("Professores", { turma_id, curso, turno, turma });
   }
 
   function handleNavigateToImprimir({ notas, aluno }) {
@@ -113,7 +114,7 @@ export default function Aluno() {
         <Text style={styles.descricaoAluno} numberOfLines={3}>
           Frequenta a {aluno?.turma.classe} classe, turma {aluno?.turma.letra}{" "}
           no curso de {aluno?.turma.curso.titulo} no período da{" "}
-          {aluno?.turma.turno}
+          {formatPeriodo({ periodo: aluno?.turma.turno })}
         </Text>
         <View style={styles.actions}>
           <TouchableOpacity
@@ -123,6 +124,7 @@ export default function Aluno() {
                 turma_id: usuario.turma_id,
                 curso: aluno?.turma.curso,
                 turno: aluno?.turma.turno,
+                turma: aluno?.turma,
               })
             }
           >
@@ -275,7 +277,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   boletimWrapper: {
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 12,

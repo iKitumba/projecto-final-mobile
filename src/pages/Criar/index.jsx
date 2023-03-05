@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 
   optionContainer: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#F5FAFF",
+    borderBottomColor: colors.white,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

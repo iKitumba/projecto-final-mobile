@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     height: 46,
     width: "100%",
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,
@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
   dropDown: {
     width: "100%",
     borderWidth: 1,
-    backgroundColor: "#F5FAFF",
+    backgroundColor: colors.white,
     paddingHorizontal: 12,
     borderColor: "rgba(97, 118, 141, 0.4)",
     borderRadius: 4,
