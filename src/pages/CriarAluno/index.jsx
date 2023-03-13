@@ -237,7 +237,7 @@ export default function CriarAluno() {
               <Text style={styles.label}>Nome</Text>
               <TextInput
                 placeholder="Nome completo do aluno"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 autoCapitalize="words"
                 value={nome_completo}
@@ -257,7 +257,7 @@ export default function CriarAluno() {
               <Text
                 style={[
                   styles.generoText,
-                  { color: isFemale ? colors.white : "#73869B" },
+                  { color: isFemale ? colors.white : colors.text },
                 ]}
               >
                 F
@@ -288,7 +288,7 @@ export default function CriarAluno() {
               <Text style={styles.label}>Filho de</Text>
               <TextInput
                 placeholder="Nome do pai"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 autoCapitalize="words"
                 value={nome_pai}
@@ -299,7 +299,7 @@ export default function CriarAluno() {
               <Text style={styles.label}>E de</Text>
               <TextInput
                 placeholder="Nome da mãe"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 autoCapitalize="words"
                 value={nome_mae}
@@ -340,7 +340,7 @@ export default function CriarAluno() {
             <TextInput
               placeholder="bairro, munincipio, provincia"
               autoCapitalize="words"
-              placeholderTextColor="rgba(115, 134, 155, .4)"
+              placeholderTextColor={colors.border}
               style={styles.input}
               value={endereco}
               onChangeText={setEndereco}
@@ -352,7 +352,7 @@ export default function CriarAluno() {
               <Text style={styles.label}>Nº Telefone 1</Text>
               <TextInput
                 placeholder="Do Encarregado"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 keyboardType="phone-pad"
                 value={telefone_1}
@@ -363,7 +363,7 @@ export default function CriarAluno() {
               <Text style={styles.label}>Nº Telefone 2</Text>
               <TextInput
                 placeholder="Seu número"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 keyboardType="phone-pad"
                 value={telefone_2}
@@ -376,7 +376,7 @@ export default function CriarAluno() {
             <Text style={styles.label}>bi</Text>
             <TextInput
               placeholder="Bilhete De Identidade"
-              placeholderTextColor="rgba(115, 134, 155, .4)"
+              placeholderTextColor={colors.border}
               style={styles.input}
               maxLength={14}
               value={bi}
@@ -389,17 +389,19 @@ export default function CriarAluno() {
             <SelectDropdown
               data={turmas}
               defaultButtonText="Escolha a turma"
-              rowTextStyle={styles.dropDownInputText}
-              dropdownStyle={{ color: "#73869B" }}
+              rowTextStyle={{ color: colors.text, fontSize: 16 }}
+              rowStyle={styles.dropDownRow}
+              buttonStyle={styles.buttonStyle}
+              buttonTextStyle={styles.dropDownInputText}
+              dropdownStyle={{ flex: 1 }}
+              statusBarTranslucent={true}
               renderDropdownIcon={() => (
                 <MaterialIcons
                   name="arrow-drop-down"
                   size={24}
-                  color="rgba(115, 134, 155, .4)"
+                  color={colors.border}
                 />
               )}
-              buttonStyle={styles.input}
-              buttonTextStyle={styles.dropDownInputText}
               onSelect={(selectedItem, index) => {
                 setTurmaId(selectedItem.id);
               }}
@@ -444,9 +446,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.primary,
     paddingTop: Constants.statusBarHeight + 24,
+  },
+  header: {
     paddingHorizontal: 24,
   },
-  header: {},
   topRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -459,22 +462,22 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
     marginTop: 24,
     paddingBottom: 24,
+    paddingHorizontal: 24,
   },
   inputContainer: {
     marginBottom: 12,
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -482,7 +485,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 
@@ -497,7 +500,7 @@ const styles = StyleSheet.create({
     height: 46,
     backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: "#BAC5D1",
+    borderColor: colors.border,
     alignSelf: "center",
     borderRadius: 4,
     marginTop: 10,
@@ -506,9 +509,9 @@ const styles = StyleSheet.create({
   },
 
   generoText: {
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#73869B",
+    color: colors.text,
   },
 
   secondRow: {
@@ -526,14 +529,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderWidth: 1,
     borderStyle: "dashed",
-    borderColor: "#BAC5D1",
+    borderColor: colors.border,
     borderRadius: 8,
     marginVertical: 12,
   },
 
   dropDownInputText: {
     fontSize: 16,
-    color: "rgba(115, 134, 155, .4)",
+    color: colors.border,
+  },
+
+  buttonStyle: {
+    width: "100%",
+    borderWidth: 1,
+    backgroundColor: colors.white,
+    paddingHorizontal: 12,
+    borderColor: colors.border,
+    borderRadius: 4,
   },
 
   dropDown: {
@@ -541,7 +553,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 
@@ -550,6 +562,12 @@ const styles = StyleSheet.create({
     marginVertical: 46,
     justifyContent: "space-between",
     alignItems: "center",
+  },
+
+  dropDownRow: {
+    backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
   },
 
   button: {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Alert, FlatList } from "react-native";
+import { View, StyleSheet, Alert, FlatList, SafeAreaView } from "react-native";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 
@@ -52,7 +52,7 @@ export default function AllProfessores() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.profContainer}>
         {/* <View style={styles.profHeader}>
             <Text style={styles.thead}>Professor</Text>
@@ -60,7 +60,7 @@ export default function AllProfessores() {
               Telefonar
             </Text>
           </View> */}
-        <Title text="Professores" stylesContainer={{ marginTop: 12 }} />
+        <Title text="Professores" stylesContainer={{ marginTop: 24 }} />
         {loading ? (
           <Loading />
         ) : (
@@ -85,14 +85,14 @@ export default function AllProfessores() {
           ))}
         </View> */}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight + 24,
+    paddingTop: 24,
     backgroundColor: colors.primary,
     paddingHorizontal: 24,
     paddingVertical: 24,

@@ -24,7 +24,7 @@ export default function NotasDisciplina({
       : colors.green;
   return (
     <TouchableOpacity
-      disabled={usuario.tipo_usuario === "ADMIN"}
+      disabled={usuario.tipo_usuario === "ADMIN" || usuario.turma_id}
       onPress={handleNavigateToAddNotas}
       style={[
         styles.notaWrapper,

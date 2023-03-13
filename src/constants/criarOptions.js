@@ -1,9 +1,9 @@
 export const criarOptions = [
-  { title: "Aluno", routeName: "CriarAluno" },
-  { title: "Curso", routeName: "CriarCurso" },
-  { title: "Turma", routeName: "CriarTurma" },
-  { title: "Disciplina", routeName: "CriarDisciplina" },
-  { title: "Usuário", routeName: "CriarUsuario" },
-  { title: "Comunicado", routeName: "CriarComunicado" },
-  { title: "Associação PDT", routeName: "CriarAssociacaoPDT" },
+  { title: "Novo Aluno", routeName: "CriarAluno" },
+  { title: "Novo Curso", routeName: "CriarCurso" },
+  { title: "Nova Turma", routeName: "CriarTurma" },
+  { title: "Nova Disciplina", routeName: "CriarDisciplina" },
+  { title: "Novo Usuário", routeName: "CriarUsuario" },
+  { title: "Novo Comunicado", routeName: "CriarComunicado" },
+  { title: "Nova Associação PDT", routeName: "CriarAssociacaoPDT" },
 ];

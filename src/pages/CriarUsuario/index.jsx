@@ -199,7 +199,7 @@ export default function CriarUsuario() {
               <Text style={styles.label}>Nome</Text>
               <TextInput
                 placeholder="Nome completo do aluno"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 value={nome_completo}
                 onChangeText={setNome_completo}
@@ -219,7 +219,7 @@ export default function CriarUsuario() {
               <Text
                 style={[
                   styles.generoText,
-                  { color: isFemale ? colors.white : "#73869B" },
+                  { color: isFemale ? colors.white : colors.text },
                 ]}
               >
                 F
@@ -237,7 +237,7 @@ export default function CriarUsuario() {
               <Text
                 style={[
                   styles.generoText,
-                  { color: !isFemale ? colors.white : "#73869B" },
+                  { color: !isFemale ? colors.white : colors.text },
                 ]}
               >
                 M
@@ -250,7 +250,7 @@ export default function CriarUsuario() {
               <Text style={styles.label}>Telefone</Text>
               <TextInput
                 placeholder="999999999"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 value={telefone}
                 onChangeText={setTelefone}
@@ -261,7 +261,7 @@ export default function CriarUsuario() {
               <Text style={styles.label}>Bi</Text>
               <TextInput
                 placeholder="Bilhete de identidade"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 value={bi}
                 onChangeText={setBi}
@@ -275,7 +275,7 @@ export default function CriarUsuario() {
             <Text style={styles.label}>Endereço</Text>
             <TextInput
               placeholder="bairro, munincipio, provincia"
-              placeholderTextColor="rgba(115, 134, 155, .4)"
+              placeholderTextColor={colors.border}
               style={styles.input}
               value={endereco}
               onChangeText={setEndereco}
@@ -288,12 +288,13 @@ export default function CriarUsuario() {
               <Text style={styles.label}>Username</Text>
               <TextInput
                 placeholder="Nome de usuário"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 value={username}
                 onChangeText={setUsername}
                 autoCapitalize="none"
                 autoCorrect={false}
+                maxLength={20}
               />
             </View>
             <View style={[styles.inputContainer, { flex: 1 }]}>
@@ -308,7 +309,7 @@ export default function CriarUsuario() {
               </TouchableOpacity>
               <TextInput
                 placeholder="Digite uma senha"
-                placeholderTextColor="rgba(115, 134, 155, .4)"
+                placeholderTextColor={colors.border}
                 style={styles.input}
                 value={senha}
                 onChangeText={setSenha}
@@ -323,18 +324,20 @@ export default function CriarUsuario() {
             <Text style={styles.label}>Cargo</Text>
             <SelectDropdown
               data={cargos}
+              statusBarTranslucent={true}
               defaultButtonText="Escolha o cargo do usuário"
-              rowTextStyle={styles.dropDownInputText}
-              dropdownStyle={{ color: "#73869B" }}
+              rowTextStyle={{ color: colors.text, fontSize: 16 }}
+              rowStyle={styles.dropDownRow}
+              buttonTextStyle={styles.dropDownInputText}
+              dropdownStyle={{ flex: 1 }}
               renderDropdownIcon={() => (
                 <MaterialIcons
                   name="arrow-drop-down"
                   size={24}
-                  color="rgba(115, 134, 155, .4)"
+                  color={colors.border}
                 />
               )}
               buttonStyle={styles.input}
-              buttonTextStyle={styles.dropDownInputText}
               onSelect={(selectedItem, index) => {
                 setTipo_usuario(selectedItem.id);
               }}
@@ -379,9 +382,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.primary,
     paddingTop: Constants.statusBarHeight + 24,
+  },
+  header: {
     paddingHorizontal: 24,
   },
-  header: {},
   topRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -394,22 +398,22 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
     marginTop: 24,
     paddingBottom: 24,
+    paddingHorizontal: 24,
   },
   inputContainer: {
     marginBottom: 12,
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -417,7 +421,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
     width: "100%",
   },
@@ -433,7 +437,7 @@ const styles = StyleSheet.create({
     height: 46,
     backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: "#BAC5D1",
+    borderColor: colors.border,
     alignSelf: "center",
     borderRadius: 4,
     marginTop: 10,
@@ -442,9 +446,9 @@ const styles = StyleSheet.create({
   },
 
   generoText: {
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#73869B",
+    color: colors.text,
   },
 
   secondRow: {
@@ -462,14 +466,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderWidth: 1,
     borderStyle: "dashed",
-    borderColor: "#BAC5D1",
+    borderColor: colors.border,
     borderRadius: 8,
     marginVertical: 12,
   },
 
   dropDownInputText: {
     fontSize: 16,
-    color: "rgba(115, 134, 155, .4)",
+    color: colors.border,
   },
 
   dropDown: {
@@ -477,8 +481,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
+  },
+
+  dropDownRow: {
+    backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
   },
 
   actions: {

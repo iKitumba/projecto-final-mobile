@@ -43,11 +43,11 @@ export default function Login() {
       <Image source={logoImg} style={styles.logo} />
 
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>USERNAME</Text>
+        <Text style={styles.label}>ID, BI, USERNAME</Text>
         <TextInput
           style={styles.input}
-          placeholder="Digite o seu nome de usuário"
-          placeholderTextColor="rgba(115, 134, 155, .4)"
+          placeholder="Digite um dos items a cima"
+          placeholderTextColor={colors.border}
           autoCapitalize="none"
           value={username}
           onChangeText={setUsername}
@@ -69,7 +69,7 @@ export default function Login() {
           <TextInput
             style={styles.inputField}
             placeholder="Digite sua senha"
-            placeholderTextColor="rgba(115, 134, 155, .4)"
+            placeholderTextColor={colors.border}
             secureTextEntry={!visible}
             value={senha}
             onChangeText={setSenha}
@@ -78,13 +78,13 @@ export default function Login() {
             <Ionicons
               name={visible ? "eye-outline" : "eye-off-outline"}
               size={24}
-              color="#73869B"
+              color={colors.text}
             />
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity onPress={navigateToLoginAluno}>
-        <Text style={styles.microText}>Entrar como aluno</Text>
+      <TouchableOpacity onPress={() => {}}>
+        <Text style={styles.microText}>Esqueci minha senha ):</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
 
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 46,
     borderWidth: 1,
-    borderColor: colors.grey,
+    borderColor: colors.border,
     backgroundColor: colors.white,
     marginBottom: 12,
     paddingHorizontal: 8,
@@ -149,8 +149,9 @@ const styles = StyleSheet.create({
   },
 
   microText: {
-    fontSize: 16,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
+    opacity: 0.5,
   },
 
   gradient: {

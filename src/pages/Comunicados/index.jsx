@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
 import Constants from "expo-constants";
 import { format } from "date-fns";
 import pt from "date-fns/locale/pt";
@@ -41,7 +48,7 @@ export default function Comunicados() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* <Search /> */}
 
       {loading ? (
@@ -51,7 +58,7 @@ export default function Comunicados() {
           data={comunicados}
           ListHeaderComponent={
             <Title
-              text="Últimos comunicados"
+              text="Comunicados"
               stylesContainer={{ marginTop: 24, paddingHorizontal: 24 }}
             />
           }
@@ -93,14 +100,13 @@ export default function Comunicados() {
           }}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight + 24,
     backgroundColor: colors.primary,
     // paddingHorizontal: 24,
     paddingTop: 24,
@@ -119,8 +125,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   comunicadoAssunto: {
-    fontSize: 20,
+    fontSize: 18,
+    // letterSpacing: 0.2,
     marginLeft: 8,
+    paddingLeft: 12,
     flexWrap: "wrap",
     color: colors.text,
     textTransform: "uppercase",
@@ -128,7 +136,6 @@ const styles = StyleSheet.create({
   comunicadoData: {
     fontSize: 12,
     color: colors.text,
-    opacity: 0.4,
   },
   comunicadoContent: {
     fontSize: 18,
@@ -139,9 +146,7 @@ const styles = StyleSheet.create({
   separator: {
     width: "100%",
     height: 8,
-    backgroundColor: "#ECF6FF",
+    backgroundColor: colors.white,
     marginVertical: 12,
-    borderWidth: 1,
-    borderColor: colors.border,
   },
 });

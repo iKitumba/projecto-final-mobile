@@ -35,15 +35,18 @@ export default function AuthContextProvider({ children }) {
   async function handleLogin({ username, senha }) {
     try {
       setFetching(true);
-      const { data } = await API.post("usuarios/sessao", {
-        username: String(username).trim(),
+      const { data } = await API.post("sessao", {
+        bi: String(username).trim(),
         senha,
       });
 
-      await AsyncStorage.setItem("@PAP:usuario", JSON.stringify(data.usuario));
+      await AsyncStorage.setItem(
+        "@PAP:usuario",
+        JSON.stringify(data.usuario || data.aluno)
+      );
       await AsyncStorage.setItem("@PAP:token", data.token);
 
-      setUsuario(data.usuario);
+      setUsuario(data.usuario || data.aluno);
     } catch (error) {
       Alert.alert("Erro", error.response?.data.message);
     } finally {

@@ -82,7 +82,7 @@ export default function Comunicado() {
             <Text style={styles.label}>Assunto</Text>
             <TextInput
               placeholder="Assunto do comunicado"
-              placeholderTextColor="#8e9aa866"
+              placeholderTextColor={colors.border}
               style={styles.input}
               autoCapitalize="words"
               value={titulo}
@@ -94,7 +94,7 @@ export default function Comunicado() {
             <TextInput
               placeholder="O que desejas comunicar?"
               style={[styles.input, { height: 118 }]}
-              placeholderTextColor="rgba(115, 134, 155, .4)"
+              placeholderTextColor={colors.border}
               multiline={true}
               numberOfLines={5}
               autoCapitalize="sentence"
@@ -146,9 +146,8 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
@@ -161,8 +160,8 @@ const styles = StyleSheet.create({
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 

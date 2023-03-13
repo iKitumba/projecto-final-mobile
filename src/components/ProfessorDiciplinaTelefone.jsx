@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     backgroundColor: colors.white,
     paddingHorizontal: 8,
-    borderRadius: 6,
+    borderRadius: 4,
     paddingVertical: 7,
     borderWidth: 1,
     borderColor: colors.border,
   },
   td: {
     flex: 1,
-    textAlign: "center",
+    justifyContent: "space-between",
   },
   profName: {
     fontSize: 16,

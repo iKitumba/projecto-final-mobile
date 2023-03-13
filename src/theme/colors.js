@@ -17,17 +17,17 @@ const selectTheme = ({ theme = "light" }) => {
 
     default:
       return {
-        primary: "#E7EBEF",
-        grey: "#C8D5E3",
-        text: "#61768D",
+        primary: "#F7F9FC",
+        grey: "#E0E7F1",
+        text: "#1F3C53",
         accent: "#097FFA",
         accentLowOpacity: "#CBE1F6",
         completary: "#F35298",
         danger: "#FD1818",
         green: "#18FD2E",
         yellow: "#E0FD18",
-        border: "rgba(255, 255, 255, 0.09)",
-        white: "#F5FAFF",
+        border: "#C8D5E3",
+        white: "#FFFFFF",
       };
   }
 };

@@ -14,31 +14,68 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Title from "../../components/Title";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../theme/colors";
+import { cargos } from "../../constants/cargos";
 
 export default function Settings() {
   const navigation = useNavigation();
   const { handleLogout, usuario } = useContext(AuthContext);
+  const cargo = cargos.filter((cargo) => cargo.id === usuario.tipo_usuario)[0]
+    .name;
+  const nomeCompleto =
+    usuario.nome_completo.length > 19
+      ? `${usuario.nome_completo.slice(0, 18)}...`
+      : usuario.nome_completo;
+  const username =
+    usuario.username.length > 19
+      ? `${usuario.username.slice(0, 18)}...`
+      : usuario.username;
+
+  const telefone =
+    usuario.telefone.length > 19
+      ? `${usuario.telefone.slice(0, 18)}...`
+      : usuario.telefone;
+  const cargoDoUsuario = cargo.length > 19 ? `${cargo.slice(0, 18)}...` : cargo;
 
   function navigateToAlterarUsuarioSenha() {
     navigation.navigate("AlterarUsuarioSenha");
   }
 
+  function navigateToBack() {
+    navigation.goBack();
+  }
+
   return (
     <ScrollView style={styles.container}>
-      <Title text="Configurações" stylesContainer={{ marginTop: 12 }} />
-      <Image
-        uri={usuario.foto_perfil_url}
-        // source={{ uri: usuario.foto_perfil_url }}
-        style={styles.foto_perfil_url}
-      />
-      <Text style={styles.nome_completo} numberOfLines={1}>
-        {usuario.nome_completo}
-      </Text>
+      <View style={styles.header}>
+        <Title text="Configurações" stylesContainer={{ marginTop: 0 }} />
+        <Image
+          uri={usuario.foto_perfil_url}
+          // source={{ uri: usuario.foto_perfil_url }}
+          style={styles.foto_perfil_url}
+        />
+      </View>
+
+      <View style={styles.userMicroInfo}>
+        <Text style={styles.nome_completo} numberOfLines={1}>
+          {nomeCompleto}
+        </Text>
+        <Text style={styles.cargo} numberOfLines={1}>
+          {cargoDoUsuario}
+        </Text>
+      </View>
+
       <Text style={styles.secao}>Pessoal</Text>
       <TouchableOpacity style={styles.options}>
-        <Text style={styles.key}>Permissão</Text>
-        <Text style={styles.value}>{usuario.tipo_usuario}</Text>
+        <Text style={styles.key}>Username</Text>
+        <Text style={styles.value}>@{username}</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.options}>
+        <Text style={styles.key}>Sexo</Text>
+        <Text style={styles.value}>
+          {usuario.genero === "M" ? "Masculino" : "Femenino"}
+        </Text>
+      </TouchableOpacity>
+
       <TouchableOpacity style={styles.options}>
         <Text style={styles.key}>Telefone</Text>
         <Text style={styles.value}>{usuario.telefone}</Text>
@@ -71,18 +108,41 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 116,
   },
+  userInfoContainer: {
+    flexDirection: "row",
+    marginTop: 12,
+  },
 
-  form: {
-    marginVertical: 24,
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  userMicroInfo: {
+    marginTop: 24,
+  },
+  cargo: {
+    fontSize: 16,
+    color: colors.text,
+  },
+
+  userInfoTexts: {
+    marginLeft: 12,
+    justifyContent: "space-around",
+  },
+
+  userInfoText: {
+    fontSize: 16,
+    color: colors.text,
   },
 
   foto_perfil_url: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    borderWidth: 5,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 2,
     borderColor: colors.accent,
-    resizeMode: "contain",
+    resizeMode: "cover",
     alignSelf: "center",
   },
 
@@ -90,15 +150,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: colors.text,
-    alignSelf: "center",
+  },
+
+  alterarSenha: {
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 24,
-    marginBottom: 12,
+    justifyContent: "space-between",
+    paddingVertical: 17,
   },
 
   secao: {
     fontSize: 12,
-    fontWeight: "bold",
-    color: "#61768dc5",
+    // fontWeight: "bold",
+    color: colors.text,
     textTransform: "uppercase",
     marginTop: 32,
     marginBottom: 12,
@@ -112,13 +177,12 @@ const styles = StyleSheet.create({
 
   value: {
     fontSize: 16,
-    color: "#61768d76",
-    fontWeight: "normal",
+    color: colors.text,
   },
 
   options: {
     width: "100%",
-    height: 45,
+    height: 46,
     flexDirection: "row",
     justifyContent: "space-between",
   },

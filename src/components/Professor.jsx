@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 4,
     paddingVertical: 12,
-    // borderBottomWidth: 1,
-    // // borderBottomColor: "#61768d7f",
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   td: {
     flex: 1,

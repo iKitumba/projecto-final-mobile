@@ -108,9 +108,8 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   buttonsContainer: {

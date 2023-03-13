@@ -47,7 +47,7 @@ export default function LoginAluno() {
         <TextInput
           style={styles.input}
           placeholder="Bilhete de identidade ou ID"
-          placeholderTextColor="rgba(115, 134, 155, .4)"
+          placeholderTextColor={colors.border}
           autoCorrect={false}
           autoCapitalize="none"
           value={bi}
@@ -71,7 +71,7 @@ export default function LoginAluno() {
           <TextInput
             style={styles.inputField}
             placeholder="Digite sua senha"
-            placeholderTextColor="rgba(115, 134, 155, .4)"
+            placeholderTextColor={colors.border}
             secureTextEntry={!visible}
             value={senha}
             onChangeText={setSenha}
@@ -80,7 +80,7 @@ export default function LoginAluno() {
             <Ionicons
               name={visible ? "eye-outline" : "eye-off-outline"}
               size={24}
-              color="#73869B"
+              color={colors.text}
             />
           </TouchableOpacity>
         </View>
@@ -128,15 +128,15 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
     width: "100%",
     height: 46,
     borderWidth: 1,
-    borderColor: colors.grey,
+    borderColor: colors.border,
     backgroundColor: colors.white,
     marginBottom: 12,
     paddingHorizontal: 8,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   microText: {
     fontSize: 16,
-    color: "#73869B",
+    color: colors.text,
   },
 
   gradient: {

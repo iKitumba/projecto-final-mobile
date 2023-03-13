@@ -104,6 +104,8 @@ export default function CriarTurma() {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Curso</Text>
           <SelectDropdown
+            rowStyle={styles.dropDownRow}
+            statusBarTranslucent={true}
             data={cursos}
             defaultButtonText="Seleciona o curso"
             rowTextStyle={styles.dropDownInputText}
@@ -112,7 +114,7 @@ export default function CriarTurma() {
               <MaterialIcons
                 name="arrow-drop-down"
                 size={24}
-                color="rgba(115, 134, 155, .4)"
+                color={colors.border}
               />
             )}
             buttonStyle={styles.input}
@@ -153,6 +155,8 @@ export default function CriarTurma() {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Período</Text>
           <SelectDropdown
+            rowStyle={styles.dropDownRow}
+            statusBarTranslucent={true}
             data={periodos}
             defaultButtonText="Período de aulas"
             rowTextStyle={styles.dropDownInputText}
@@ -161,7 +165,7 @@ export default function CriarTurma() {
               <MaterialIcons
                 name="arrow-drop-down"
                 size={24}
-                color="rgba(115, 134, 155, .4)"
+                color={colors.border}
               />
             )}
             buttonStyle={styles.input}
@@ -185,6 +189,8 @@ export default function CriarTurma() {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Indentificador</Text>
           <SelectDropdown
+            rowStyle={styles.dropDownRow}
+            statusBarTranslucent={true}
             data={letras}
             defaultButtonText="Letra identificadora"
             rowTextStyle={styles.dropDownInputText}
@@ -193,7 +199,7 @@ export default function CriarTurma() {
               <MaterialIcons
                 name="arrow-drop-down"
                 size={24}
-                color="rgba(115, 134, 155, .4)"
+                color={colors.border}
               />
             )}
             buttonStyle={styles.input}
@@ -256,9 +262,8 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
@@ -270,8 +275,8 @@ const styles = StyleSheet.create({
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -280,7 +285,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 
@@ -307,9 +312,15 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
 
+  dropDownRow: {
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+
   dropDownInputText: {
     fontSize: 16,
-    color: "rgba(115, 134, 155, .4)",
+    color: colors.text,
   },
 
   dropDown: {
@@ -317,7 +328,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 
@@ -332,10 +343,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   checkbox: {
-    borderColor: "#73869B",
+    borderColor: colors.border,
   },
   checkboxText: {
     marginLeft: 8,
-    color: "#73869B",
+    color: colors.text,
   },
 });

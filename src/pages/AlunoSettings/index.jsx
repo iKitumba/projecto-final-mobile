@@ -24,12 +24,22 @@ export default function AlunoSettings() {
 
   return (
     <ScrollView style={styles.container}>
-      <Title text="Configurações" stylesContainer={{ marginTop: 12 }} />
+      <Title text="Configurações" stylesContainer={{ marginTop: 0 }} />
 
       <Text style={styles.secao}>Pessoal</Text>
       <TouchableOpacity style={styles.options}>
+        <Text style={styles.key}>Sexo</Text>
+        <Text style={styles.value}>
+          {usuario?.id === "M" ? "Masculino" : "Femenino"}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.options}>
         <Text style={styles.key}>ID</Text>
         <Text style={styles.value}>{usuario?.id}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.options}>
+        <Text style={styles.key}>BI</Text>
+        <Text style={styles.value}>{usuario?.bi}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.options}>
         <Text style={styles.key}>Nome do pai</Text>
@@ -44,8 +54,8 @@ export default function AlunoSettings() {
         <Text style={styles.value}>{usuario?.telefone_1}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.options}>
-        <Text style={styles.key}>Nº do Bilhete</Text>
-        <Text style={styles.value}>{usuario?.bi}</Text>
+        <Text style={styles.key}>Nº do aluno</Text>
+        <Text style={styles.value}>{usuario?.telefone_2}</Text>
       </TouchableOpacity>
 
       <Text style={styles.secao}>Preferências</Text>
@@ -80,14 +90,11 @@ const styles = StyleSheet.create({
 
   secao: {
     fontSize: 12,
-    fontWeight: "bold",
-    color: "#61768dc5",
+    // fontWeight: "bold",
+    color: colors.text,
     textTransform: "uppercase",
     marginTop: 32,
     marginBottom: 12,
-
-    borderBottomColor: "#097dfa2b",
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 
   key: {
@@ -98,13 +105,12 @@ const styles = StyleSheet.create({
 
   value: {
     fontSize: 16,
-    color: "#61768d76",
-    fontWeight: "normal",
+    color: colors.text,
   },
 
   options: {
     width: "100%",
-    height: 45,
+    height: 46,
     flexDirection: "row",
     justifyContent: "space-between",
   },

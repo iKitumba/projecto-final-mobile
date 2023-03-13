@@ -12,11 +12,15 @@ export default function TurmaCard({
   disciplina,
 }) {
   return (
-    <View style={styles.turmaContainer}>
-      <TouchableOpacity onPress={onPress} style={styles.turmaMetadata}>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.5}
+      style={styles.turmaContainer}
+    >
+      <View style={styles.turmaMetadata}>
         <Text style={styles.classe}>{classe}</Text>
         <Text style={styles.curso}>{curso}</Text>
-      </TouchableOpacity>
+      </View>
       <View style={styles.turmaInfo}>
         <Text style={styles.periodo}>{formatPeriodo({ periodo })}</Text>
         {disciplina && (
@@ -30,7 +34,7 @@ export default function TurmaCard({
           <Text style={{ fontWeight: "bold" }}>{num_alunos}</Text> alunos
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 12,
     marginBottom: 12,
-    borderColor: colors.grey,
+    borderColor: colors.border,
   },
   turmaMetadata: {
     width: 80,
@@ -74,19 +78,16 @@ const styles = StyleSheet.create({
   },
   periodo: {
     fontSize: 18,
-    fontWeight: "normal",
     color: colors.text,
     textAlign: "right",
   },
   disciplina: {
     fontSize: 12,
-    fontWeight: "400",
     color: colors.text,
     textAlign: "right",
   },
   num_alunos: {
     fontSize: 18,
-    fontWeight: "normal",
     color: colors.text,
     textAlign: "right",
   },

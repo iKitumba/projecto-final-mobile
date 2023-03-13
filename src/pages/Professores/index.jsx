@@ -116,13 +116,11 @@ const styles = StyleSheet.create({
   topCursoName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
   topPeriodo: {
     color: colors.text,
-    opacity: 0.4,
     fontSize: 12,
   },
   bottomRow: {

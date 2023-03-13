@@ -97,6 +97,7 @@ export default function Turma() {
         <FlatList
           data={alunos}
           onRefresh={refreshList}
+          style={{ paddingHorizontal: 24 }}
           refreshing={refreshing}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item: aluno, index }) => (
@@ -120,9 +121,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.primary,
     paddingTop: Constants.statusBarHeight + 24,
+  },
+  header: {
     paddingHorizontal: 24,
   },
-  header: {},
   topRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -135,13 +137,11 @@ const styles = StyleSheet.create({
   topCursoName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
   topPeriodo: {
     color: colors.text,
-    opacity: 0.4,
     fontSize: 12,
   },
   bottomRow: {
@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
   },
   totalAlunos: {
     color: colors.text,
-    opacity: 0.4,
     fontSize: 12,
   },
 });

@@ -79,7 +79,7 @@ export default function AlterarSenha() {
           <Text style={styles.label}>Senha atual</Text>
           <TextInput
             placeholder="Digite a sua senha atual"
-            placeholderTextColor="rgba(115, 134, 155, .4)"
+            placeholderTextColor={colors.border}
             style={styles.input}
             secureTextEntry={true}
             autoCorrect={false}
@@ -92,7 +92,7 @@ export default function AlterarSenha() {
           <Text style={styles.label}>Nova senha</Text>
           <TextInput
             placeholder="Digite uma senha nova"
-            placeholderTextColor="rgba(115, 134, 155, .4)"
+            placeholderTextColor={colors.border}
             style={styles.input}
             secureTextEntry={true}
             autoCorrect={false}
@@ -137,9 +137,8 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
@@ -151,8 +150,8 @@ const styles = StyleSheet.create({
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 

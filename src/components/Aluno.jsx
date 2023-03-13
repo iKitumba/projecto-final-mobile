@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     backgroundColor: colors.white,
     borderRadius: 8,
+    borderWidth: 1,
     borderColor: colors.border,
     paddingHorizontal: 7,
   },
@@ -96,12 +97,13 @@ const styles = StyleSheet.create({
   },
   rightSide: {
     paddingHorizontal: 12,
+    height: "100%",
+    paddingVertical: 7,
     flex: 3,
     justifyContent: "space-between",
   },
   nomeAluno: {
     fontSize: 16,
-    fontWeight: "600",
     color: colors.text,
   },
   progresses: {
@@ -124,6 +126,6 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: "row",
-    marginTop: 24,
+    // marginTop: 24,
   },
 });

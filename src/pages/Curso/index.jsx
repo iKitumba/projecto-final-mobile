@@ -73,7 +73,7 @@ export default function Curso() {
           <Text style={styles.label}>Titulo</Text>
           <TextInput
             placeholder="Titulo do curso"
-            placeholderTextColor="rgba(115, 134, 155, .4)"
+            placeholderTextColor={colors.border}
             autoCapitalize="words"
             style={styles.input}
             value={titulo}
@@ -85,7 +85,7 @@ export default function Curso() {
           <TextInput
             placeholder="Uma abreviação para o curso"
             style={styles.input}
-            placeholderTextColor="rgba(115, 134, 155, .4)"
+            placeholderTextColor={colors.border}
             maxLength={10}
             value={diminuitivo}
             onChangeText={setDiminuitivo}
@@ -135,9 +135,8 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
@@ -149,8 +148,8 @@ const styles = StyleSheet.create({
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 

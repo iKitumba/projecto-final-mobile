@@ -3163,7 +3163,7 @@ expo-file-system@~14.1.0:
     "@expo/config-plugins" "~5.0.0"
     uuid "^3.4.0"
 
-expo-font@~10.2.1:
+expo-font@~10.2.0, expo-font@~10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-10.2.1.tgz#c13e65e864befaa4710504096b68635c6f7e48d8"
   integrity sha512-sxy5GrdtY+Ka8Wo5wnrcFFeO6MbYC6Dris5wMLqshvVK6BneJNMUsFvwRfvVgg0TzsmMAc3Rlca2xyZ8ettinw==
@@ -5598,11 +5598,6 @@ react-native-select-dropdown@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-3.1.0.tgz#a0c2c98c5db29e37e4ef3c2f68918aec1c4edb01"
   integrity sha512-M3urU+Q3H5KbJfkvB6adatTm0s5vsIly+cq6StGzr6AoQMoXa//4KZ+kgKtQ06r3t1O0A6Vx51xDSZw813xilw==
-
-react-native-table-component@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-table-component/-/react-native-table-component-1.2.2.tgz#1c9bdcd8f1fd7edf10d1e93ebc3b7877ecd74def"
-  integrity sha512-7bbsi5431iWcjj3toASh8lFHGi6AG/+MTd4M7GuksXKxx/CFs/Qwv1Ys7D2wgyuYKe3hxWNfSVrteFj0tOYXYw==
 
 react-native@0.69.6:
   version "0.69.6"

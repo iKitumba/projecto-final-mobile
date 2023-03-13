@@ -12,7 +12,6 @@ import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 
 import SelectDropdown from "react-native-select-dropdown";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { API } from "../../services/api";
 import { colors } from "../../theme/colors";
@@ -119,15 +118,16 @@ export default function CriarAssociacaoPDT() {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Professor</Text>
           <SelectDropdown
+            rowStyle={styles.dropDownRow}
             data={professores}
             defaultButtonText="Qual desses professores?"
+            statusBarTranslucent={true}
             rowTextStyle={styles.dropDownInputText}
-            dropdownStyle={{ color: "#73869B" }}
             renderDropdownIcon={() => (
               <MaterialIcons
                 name="arrow-drop-down"
                 size={24}
-                color="rgba(115, 134, 155, .4)"
+                color={colors.border}
               />
             )}
             buttonStyle={styles.input}
@@ -151,15 +151,16 @@ export default function CriarAssociacaoPDT() {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Turma</Text>
           <SelectDropdown
+            rowStyle={styles.dropDownRow}
             data={turmas}
             defaultButtonText="Qual a turma?"
+            statusBarTranslucent={true}
             rowTextStyle={styles.dropDownInputText}
-            dropdownStyle={{ color: "#73869B" }}
             renderDropdownIcon={() => (
               <MaterialIcons
                 name="arrow-drop-down"
                 size={24}
-                color="rgba(115, 134, 155, .4)"
+                color={colors.border}
               />
             )}
             buttonStyle={styles.input}
@@ -183,15 +184,16 @@ export default function CriarAssociacaoPDT() {
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Disciplina</Text>
           <SelectDropdown
+            rowStyle={styles.dropDownRow}
             data={disciplinas}
             defaultButtonText="Escolha a disciplina"
             rowTextStyle={styles.dropDownInputText}
-            dropdownStyle={{ color: "#73869B" }}
+            statusBarTranslucent={true}
             renderDropdownIcon={() => (
               <MaterialIcons
                 name="arrow-drop-down"
                 size={24}
-                color="rgba(115, 134, 155, .4)"
+                color={colors.border}
               />
             )}
             buttonStyle={styles.input}
@@ -254,9 +256,8 @@ const styles = StyleSheet.create({
   topOpctionName: {
     marginLeft: 12,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: colors.text,
-    textTransform: "uppercase",
   },
 
   form: {
@@ -268,8 +269,8 @@ const styles = StyleSheet.create({
   },
   label: {
     textTransform: "uppercase",
-    fontSize: 10,
-    color: "#73869B",
+    fontSize: 12,
+    color: colors.text,
     marginBottom: 8,
   },
   input: {
@@ -278,7 +279,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 
@@ -307,7 +308,13 @@ const styles = StyleSheet.create({
 
   dropDownInputText: {
     fontSize: 16,
-    color: "rgba(115, 134, 155, .4)",
+    color: colors.text,
+  },
+
+  dropDownRow: {
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
   },
 
   dropDown: {
@@ -315,7 +322,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.white,
     paddingHorizontal: 12,
-    borderColor: "rgba(97, 118, 141, 0.4)",
+    borderColor: colors.border,
     borderRadius: 4,
   },
 });

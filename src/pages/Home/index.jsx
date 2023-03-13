@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, SafeAreaView } from "react-native";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 
@@ -51,7 +51,7 @@ export default function Home() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* <Search /> */}
 
       {/* <View style={styles.content}> */}
@@ -60,7 +60,7 @@ export default function Home() {
       ) : (
         <FlatList
           ListHeaderComponent={
-            <Title text="Turmas" stylesContainer={{ marginTop: 12 }} />
+            <Title text="Turmas" stylesContainer={{ marginTop: 24 }} />
           }
           data={turmas}
           onRefresh={refreshList}
@@ -82,14 +82,14 @@ export default function Home() {
           }}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight + 24,
+    paddingTop: 24,
     backgroundColor: colors.primary,
     paddingHorizontal: 24,
     // paddingVertical: 24,

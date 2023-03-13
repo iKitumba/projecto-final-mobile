@@ -12,7 +12,6 @@ import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native-expo-image-cache";
 
-import Title from "../../components/Title";
 import NotasDisciplina from "../../components/NotasDisciplina";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -24,6 +23,7 @@ import Loading from "../../components/Loading";
 import { colors } from "../../theme/colors";
 import { handleCall } from "../../utils/handleCall";
 import { formatPeriodo } from "../../utils/formatPeriodo";
+import { TitleWithOrnament } from "../../components/TitleWithOrnament";
 
 export default function AlunoPerfil() {
   const [loading, setLoading] = useState(true);
@@ -207,7 +207,7 @@ export default function AlunoPerfil() {
             <Ionicons name="call-outline" size={24} color={colors.accent} />
           </TouchableOpacity>
         </View>
-        <Title
+        <TitleWithOrnament
           text={`${Number(aproveitamento)}% de Aproveitamento`}
           stylesOrnament={{
             backgroundColor:
@@ -327,10 +327,10 @@ const styles = StyleSheet.create({
 
   nomeAluno: {
     textAlign: "center",
-    marginTop: 12,
+    // marginTop: 12,
     color: colors.text,
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "bold",
   },
   descricaoAluno: {
     textAlign: "center",
@@ -338,7 +338,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 12,
-    opacity: 0.5,
   },
   actions: {
     flexDirection: "row",
@@ -378,7 +377,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
     marginTop: 12,
     marginBottom: 30,
-    borderColor: colors.text,
+    borderColor: colors.border,
     borderWidth: 1,
     minWidth: 310,
   },
@@ -398,7 +397,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderColor: colors.border,
     borderWidth: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.primary,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -406,7 +405,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.text,
+    borderBottomColor: colors.border,
     justifyContent: "space-between",
     paddingRight: 12,
     paddingVertical: 12,
