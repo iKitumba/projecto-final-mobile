@@ -13,6 +13,7 @@ import AlunoEncarregadoProfileRoutes from "./alunoEncarregadoProfile.routes";
 import AlunoSettingsRoutes from "./alunosSettings.routes";
 
 import { colors } from "../theme/colors";
+import { Platform } from "react-native";
 
 export default function AlunoRoutes() {
   const { logged } = useContext(AuthContext);
@@ -23,7 +24,7 @@ export default function AlunoRoutes() {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-          height: 70,
+          height: Platform.OS === "ios" ? 90 : 70,
           backgroundColor: colors.grey,
         },
       }}
@@ -52,7 +53,7 @@ export default function AlunoRoutes() {
               <Ionicons
                 size={28}
                 color={focused ? colors.accent : colors.text}
-                name="megaphone-outline"
+                name="notifications-outline"
               />
             );
           },

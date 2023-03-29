@@ -18,7 +18,9 @@ export default function TurmaCard({
       style={styles.turmaContainer}
     >
       <View style={styles.turmaMetadata}>
-        <Text style={styles.classe}>{classe}</Text>
+        <Text style={styles.classe} numberOfLines={1}>
+          {classe}
+        </Text>
         <Text style={styles.curso}>{curso}</Text>
       </View>
       <View style={styles.turmaInfo}>
@@ -31,7 +33,8 @@ export default function TurmaCard({
           </Text>
         )}
         <Text style={styles.num_alunos}>
-          <Text style={{ fontWeight: "bold" }}>{num_alunos}</Text> alunos
+          <Text style={{ fontWeight: "bold" }}>{num_alunos}</Text> aluno
+          {num_alunos > 1 ? "s" : ""}
         </Text>
       </View>
     </TouchableOpacity>
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
   classe: {
     fontSize: 24,
     fontWeight: "bold",
+    maxWidth: "100%",
     color: colors.text,
   },
   curso: {
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   periodo: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.text,
     textAlign: "right",
   },
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
   num_alunos: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.text,
     textAlign: "right",
   },

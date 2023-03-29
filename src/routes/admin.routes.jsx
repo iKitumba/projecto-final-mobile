@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Comunicados from "../pages/Comunicados";
@@ -20,7 +21,7 @@ export default function AdminRoutes({}) {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-          height: 70,
+          height: Platform.OS === "ios" ? 90 : 70,
           backgroundColor: colors.grey,
         },
       }}
@@ -82,7 +83,7 @@ export default function AdminRoutes({}) {
               <Ionicons
                 size={28}
                 color={focused ? colors.accent : colors.text}
-                name="megaphone-outline"
+                name="notifications-outline"
               />
             );
           },

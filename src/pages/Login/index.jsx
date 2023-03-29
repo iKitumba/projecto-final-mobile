@@ -26,8 +26,8 @@ export default function Login() {
   const [visible, setVisible] = useState(false);
   const { handleLogin, fetching } = useContext(AuthContext);
 
-  function navigateToLoginAluno() {
-    navigation.navigate("LoginAluno");
+  function navigateEsqueciMinhaSenha() {
+    navigation.navigate("EsqueciMinhaSenha");
   }
 
   function toggleVisibility() {
@@ -83,7 +83,7 @@ export default function Login() {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={navigateEsqueciMinhaSenha}>
         <Text style={styles.microText}>Esqueci minha senha ):</Text>
       </TouchableOpacity>
 

@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   comunicadoAssunto: {
-    fontSize: 18,
+    fontSize: 16,
     // letterSpacing: 0.2,
     marginLeft: 8,
     paddingLeft: 12,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   comunicadoContent: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.text,
     lineHeight: 26,
     paddingHorizontal: 24,

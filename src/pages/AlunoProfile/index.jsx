@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   contactarButtonText: {
-    fontSize: 18,
+    fontSize: 16,
     textTransform: "uppercase",
     color: colors.primary,
   },

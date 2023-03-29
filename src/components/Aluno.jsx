@@ -56,14 +56,17 @@ export default function Aluno({
         <Text style={styles.nomeAluno} numberOfLines={1}>
           {nome_completo}
         </Text>
-        <View style={styles.progresses}>
-          <View style={styles.progress} />
-          <View
-            style={[
-              styles.progress2,
-              { width: aproveitamento && `${aproveitamento}%` },
-            ]}
-          />
+        <View style={styles.aproveitamento}>
+          <View style={styles.progresses}>
+            <View style={styles.progress} />
+            <View
+              style={[
+                styles.progress2,
+                { width: aproveitamento && `${aproveitamento}%` },
+              ]}
+            />
+          </View>
+          <Text style={styles.aproveitamentoText}>{aproveitamento}%</Text>
         </View>
         <View style={styles.actions}>
           <Button
@@ -108,6 +111,7 @@ const styles = StyleSheet.create({
   },
   progresses: {
     position: "relative",
+    flex: 5,
   },
   progress: {
     width: "100%",
@@ -123,6 +127,21 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: colors.accent,
     zIndex: 11,
+  },
+  aproveitamento: {
+    width: "100%",
+    position: "relative",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 8,
+  },
+  aproveitamentoText: {
+    flex: 1,
+    marginLeft: 4,
+    fontSize: 12,
+    color: colors.text,
+    textAlign: "right",
   },
   actions: {
     flexDirection: "row",
