@@ -64,14 +64,14 @@ export default function Comunicado() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <View style={styles.topRow}>
           <TouchableOpacity style={styles.goBack} onPress={handleBack}>
             <Ionicons name="arrow-back" size={24} color={colors.text} />
             <Text style={styles.topOpctionName}>Comunicado</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
 
       <ScrollView style={styles.form}>
         <KeyboardAvoidingView
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.primary,
-    paddingTop: Constants.statusBarHeight + 24,
+    // paddingTop: Constants.statusBarHeight + 24,
     paddingHorizontal: 24,
   },
   header: {},

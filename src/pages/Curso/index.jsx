@@ -7,6 +7,8 @@ import {
   ScrollView,
   TextInput,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Constants from "expo-constants";
@@ -59,16 +61,20 @@ export default function Curso() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <View style={styles.topRow}>
           <TouchableOpacity style={styles.goBack} onPress={handleBack}>
             <Ionicons name="arrow-back" size={24} color={colors.text} />
             <Text style={styles.topOpctionName}>Curso</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
 
-      <ScrollView style={styles.form}>
+      <KeyboardAvoidingView
+        enabled={Platform.OS === "ios"}
+        behavior="padding"
+        style={styles.form}
+      >
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Titulo</Text>
           <TextInput
@@ -110,7 +116,7 @@ export default function Curso() {
             <Text style={styles.buttonText}>Descartar</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -119,7 +125,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.primary,
-    paddingTop: Constants.statusBarHeight + 24,
+    // paddingTop: Constants.statusBarHeight + 24,
     paddingHorizontal: 24,
   },
   header: {},

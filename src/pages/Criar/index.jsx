@@ -36,16 +36,19 @@ export default function Criar() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <View style={styles.topRow}>
           <TouchableOpacity style={styles.goBack} onPress={handleBack}>
             <Ionicons name="arrow-back" size={24} color={colors.text} />
             <Text style={styles.topOpctionName}>Criar</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
 
-      <ScrollView style={styles.criarOptionsContainer}>
+      <ScrollView
+        style={styles.criarOptionsContainer}
+        contentContainerStyle={{ marginTop: 0, paddingTop: 0 }}
+      >
         <View style={styles.criarOptionRow}>
           <TouchableOpacity
             style={styles.criarOption}
@@ -146,7 +149,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.primary,
-    paddingTop: 24,
   },
   header: {
     paddingHorizontal: 24,
@@ -169,7 +171,8 @@ const styles = StyleSheet.create({
   },
 
   criarOptionsContainer: {
-    marginTop: 24,
+    flex: 1,
+    paddingTop: 0,
     paddingHorizontal: 12,
     paddingBottom: 100,
   },
@@ -212,10 +215,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingVertical: 12,
+    // paddingVertical: 12,
   },
   optionText: {
-    fontSize: 20,
+    fontSize: 16,
     textTransform: "uppercase",
     color: colors.text,
   },

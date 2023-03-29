@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -12,48 +13,96 @@ import Curso from "../pages/Curso";
 import Comunicado from "../pages/Comunicado";
 import { colors } from "../theme/colors";
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 
 export default function CriarRoutes() {
+  const navigation = useNavigation();
   return (
     <Navigator
       screenOptions={{
         headerShown: true,
-        title: "Criar",
+        // headerBackVisible: false,
+        // headerShadowVisible: false,
         headerStyle: { backgroundColor: colors.primary },
         headerTintColor: colors.text,
         headerTitleStyle: { fontSize: 16 },
-        headerBackButtonMenuEnabled: true,
-        headerTitle: (props) => (
-          <View
-            {...props}
-            style={{ flexDirection: "row", alignItems: "center" }}
-          >
-            <Ionicons name="arrow-back" />
-            <Text>Criar</Text>
-          </View>
-        ),
       }}
     >
-      <Screen name="CriarPage" component={Criar} />
+      <Screen
+        name="CriarPage"
+        component={Criar}
+        options={{
+          title: "Criar",
+          headerTitle: (props) => (
+            <TouchableOpacity
+              {...props}
+              style={{ flexDirection: "row", alignItems: "center" }}
+              onPress={() => navigation.goBack()}
+            >
+              <Ionicons name="arrow-back" size={24} color={colors.text} />
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: colors.text,
+                  fontWeight: "bold",
+                  marginLeft: 12,
+                }}
+              >
+                Criar
+              </Text>
+            </TouchableOpacity>
+          ),
+        }}
+      />
       <Screen
         name="CriarAluno"
         component={CriarAluno}
         options={{
-          headerShown: true,
-          // headerShadowVisible: false,
           title: "Aluno",
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: colors.text,
-          headerTitleStyle: { fontSize: 16 },
         }}
       />
-      <Screen name="CriarUsuario" component={CriarUsuario} />
-      <Screen name="CriarTurma" component={CriarTurma} />
-      <Screen name="CriarAssociacaoPDT" component={CriarAssociacaoPDT} />
-      <Screen name="CriarCurso" component={Curso} />
-      <Screen name="CriarComunicado" component={Comunicado} />
-      <Screen name="CriarDisciplina" component={Disciplina} />
+      <Screen
+        name="CriarUsuario"
+        component={CriarUsuario}
+        options={{
+          title: "Funcionário",
+        }}
+      />
+      <Screen
+        name="CriarTurma"
+        component={CriarTurma}
+        options={{
+          title: "Turma",
+        }}
+      />
+      <Screen
+        name="CriarAssociacaoPDT"
+        component={CriarAssociacaoPDT}
+        options={{
+          title: "Associação PDT",
+        }}
+      />
+      <Screen
+        name="CriarCurso"
+        component={Curso}
+        options={{
+          title: "Curso",
+        }}
+      />
+      <Screen
+        name="CriarComunicado"
+        component={Comunicado}
+        options={{
+          title: "Comunicado",
+        }}
+      />
+      <Screen
+        name="CriarDisciplina"
+        component={Disciplina}
+        options={{
+          title: "Disciplina",
+        }}
+      />
     </Navigator>
   );
 }
