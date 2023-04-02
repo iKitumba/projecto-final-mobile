@@ -26,9 +26,9 @@ export default function Login() {
   const [visible, setVisible] = useState(false);
   const { handleLogin, fetching } = useContext(AuthContext);
 
-  function navigateEsqueciMinhaSenha() {
-    navigation.navigate("EsqueciMinhaSenha");
-  }
+  // function navigateEsqueciMinhaSenha() {
+  //   navigation.navigate("EsqueciMinhaSenha");
+  // }
 
   function toggleVisibility() {
     setVisible((prev) => !prev);
@@ -83,9 +83,9 @@ export default function Login() {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity onPress={navigateEsqueciMinhaSenha}>
+      {/* <TouchableOpacity onPress={navigateEsqueciMinhaSenha}>
         <Text style={styles.microText}>Esqueci minha senha ):</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.submitButton}

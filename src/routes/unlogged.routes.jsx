@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const { Navigator, Screen } = createNativeStackNavigator();
 
 import Login from "../pages/Login";
-import EsqueciMinhaSenha from "../pages/EsqueciMinhaSenha";
+// import EsqueciMinhaSenha from "../pages/EsqueciMinhaSenha";
 
 export default function UnloggedRoutes() {
   return (
@@ -17,7 +17,7 @@ export default function UnloggedRoutes() {
         //   animation: "slide_from_bottom",
         // }}
       />
-      <Screen
+      {/* <Screen
         name="EsqueciMinhaSenha"
         component={EsqueciMinhaSenha}
         // options={{
@@ -25,7 +25,7 @@ export default function UnloggedRoutes() {
         //   animationTypeForReplace: "pop",
         //   animation: "slide_from_bottom",
         // }}
-      />
+      /> */}
     </Navigator>
   );
 }
