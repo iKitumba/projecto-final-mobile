@@ -47,8 +47,6 @@ export default function CriarUsuario() {
     !bi ||
     !telefone ||
     !endereco ||
-    !nascimento ||
-    !turmaId ||
     fetching;
 
   function handleGenero() {
