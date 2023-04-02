@@ -47,7 +47,7 @@ export default function Criar() {
 
       <ScrollView
         style={styles.criarOptionsContainer}
-        contentContainerStyle={{ marginTop: 0, paddingTop: 0 }}
+        // contentContainerStyle={{ marginTop: 0, paddingTop: 0 }}
       >
         <View style={styles.criarOptionRow}>
           <TouchableOpacity

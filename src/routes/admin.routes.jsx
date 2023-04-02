@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Comunicados from "../pages/Comunicados";
 import { Ionicons } from "@expo/vector-icons";
 
-import TurmaRoutes from "./turma.routes";
+
+import AdminTurmaRoutes from "./adminTurma.routes"
 import CriarRoutes from "./criar.routes";
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -28,7 +29,7 @@ export default function AdminRoutes({}) {
     >
       <Screen
         name="TurmaRoutes"
-        component={TurmaRoutes}
+        component={AdminTurmaRoutes}
         options={{
           tabBarIcon: ({ size, focused }) => {
             return (

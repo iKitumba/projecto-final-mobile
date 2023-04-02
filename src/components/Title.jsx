@@ -5,7 +5,9 @@ import { colors } from "../theme/colors";
 export default function Title({ text, stylesContainer, stylesText }) {
   return (
     <View style={[styles.container, stylesContainer]}>
-      <Text style={[styles.text, stylesText]}>{text}</Text>
+      <Text style={[styles.text, stylesText]} numberOfLines={1}>
+        {text}
+      </Text>
     </View>
   );
 }
